@@ -55,6 +55,7 @@
     <Compile Include="Core\HtmlLoader.cs" />
     <Compile Include="Core\IParser.cs" />
     <Compile Include="Core\IParserSettings.cs" />
+    <Compile Include="Core\Mintmanga\MmSettings.cs" />
     <Compile Include="Core\ParserWorker.cs" />
     <Compile Include="Core\Readmanga\RmParser.cs" />
     <Compile Include="Core\Readmanga\RmSettings.cs" />

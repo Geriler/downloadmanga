@@ -64,7 +64,7 @@ namespace Readmanga.Core
         private async void Worker()
         {
             bool isNewData = false, checkNextChapter = false;
-            int num_chapter = 1, num_tom = 1;
+            int num_chapter = 0, num_tom = 1;
             if (parserSettings.DowloadAll)
             {
                 for (int j = num_tom; j <= parserSettings.NumTom; j++)
@@ -113,7 +113,7 @@ namespace Readmanga.Core
             }
             else
             {
-                for (int i = 1; i <= parserSettings.NumChapter; i++)
+                for (int i = 0; i <= parserSettings.NumChapter; i++)
                 {
                     if (!isActive)
                     {

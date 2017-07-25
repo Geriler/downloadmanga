@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Readmanga.Core;
+using Readmanga.Core.Mintmanga;
 using Readmanga.Core.Readmanga;
 using System;
 using System.IO;
@@ -75,6 +76,8 @@ namespace Readmanga
             numChapter.Enabled = true;
             numTom.Enabled = true;
             Start.Enabled = true;
+            rmRadio.Enabled = true;
+            mmRadio.Enabled = true;
         }
         private void Start_Click(object sender, EventArgs e)
         {
@@ -85,7 +88,16 @@ namespace Readmanga
             numChapter.Enabled = false;
             numTom.Enabled = false;
             Start.Enabled = false;
-            parser.Settings = new RmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, downloadAll.Checked);
+            rmRadio.Enabled = false;
+            mmRadio.Enabled = false;
+            if (rmRadio.Checked)
+            {
+                parser.Settings = new RmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, downloadAll.Checked);
+            }
+            else
+            {
+                parser.Settings = new MmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, downloadAll.Checked);
+            }
             parser.Start();
         }
         private void ImgToPdf(string folder, string[] images)
@@ -150,7 +162,7 @@ namespace Readmanga
                 numTom.Visible = false;
                 numTom.Value = 1;
                 numChapter.Visible = false;
-                numChapter.Value = 1;
+                numChapter.Value = 0;
 
             }
             else
