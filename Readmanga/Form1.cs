@@ -6,6 +6,7 @@ using Readmanga.Core.Readmanga;
 using System;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Readmanga
@@ -13,9 +14,9 @@ namespace Readmanga
     public partial class Form1 : Form
     {
         ParserWorker<string []> parser;
-        String path;
-        String path_file = Directory.GetCurrentDirectory();
+        String path, path_file = Directory.GetCurrentDirectory(), replacement = "$2";
         String[] images;
+        Regex rgx = new Regex(@"(.*manga\.\w+\/)(\w+)(.*)", RegexOptions.IgnoreCase);
         public Form1()
         {
             InitializeComponent();
@@ -71,32 +72,36 @@ namespace Readmanga
             MessageBox.Show("All works done!");
             createPdf.Enabled = true;
             deletePic.Enabled = true;
-            downloadAll.Enabled = true;
+            DownloadAll.Enabled = true;
             nameManga.Enabled = true;
             numChapter.Enabled = true;
             numTom.Enabled = true;
             Start.Enabled = true;
-            rmRadio.Enabled = true;
-            mmRadio.Enabled = true;
+            rmRadio.Visible = true;
+            mmRadio.Visible = true;
         }
         private void Start_Click(object sender, EventArgs e)
         {
+            nameManga.Enabled = false;
             createPdf.Enabled = false;
             deletePic.Enabled = false;
-            downloadAll.Enabled = false;
-            nameManga.Enabled = false;
+            DownloadAll.Enabled = false;
             numChapter.Enabled = false;
             numTom.Enabled = false;
             Start.Enabled = false;
-            rmRadio.Enabled = false;
-            mmRadio.Enabled = false;
+            if (rgx.IsMatch(nameManga.Text))
+            {
+                nameManga.Text = rgx.Replace(nameManga.Text, replacement);
+            }
             if (rmRadio.Checked)
             {
-                parser.Settings = new RmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, downloadAll.Checked);
+                mmRadio.Visible = false;
+                parser.Settings = new RmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, DownloadAll.Checked);
             }
             else
             {
-                parser.Settings = new MmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, downloadAll.Checked);
+                rmRadio.Visible = false;
+                parser.Settings = new MmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, DownloadAll.Checked);
             }
             parser.Start();
         }
@@ -155,7 +160,7 @@ namespace Readmanga
         }
         private void DownloadAll_CheckedChanged(object sender, EventArgs e)
         {
-            if (downloadAll.Checked)
+            if (DownloadAll.Checked)
             {
                 label2.Visible = false;
                 label3.Visible = false;

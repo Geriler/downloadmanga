@@ -12,7 +12,7 @@ namespace Readmanga.Core
         public HtmlLoader(IParserSettings settings)
         {
             client = new HttpClient();
-            url = $"{settings.BaseUrl}/{settings.NameManga}/vol{settings.Prefix}";
+            url = $"{settings.BaseUrl}/{settings.NameManga}/vol{settings.Prefix}?mature=1";
         }
         public async Task<string> GetSourceByPageId (int tom, int chapter)
         {

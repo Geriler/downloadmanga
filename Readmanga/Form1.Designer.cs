@@ -37,7 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.createPdf = new System.Windows.Forms.CheckBox();
             this.deletePic = new System.Windows.Forms.CheckBox();
-            this.downloadAll = new System.Windows.Forms.CheckBox();
+            this.DownloadAll = new System.Windows.Forms.CheckBox();
             this.rmRadio = new System.Windows.Forms.RadioButton();
             this.mmRadio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numTom)).BeginInit();
@@ -105,9 +105,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.Size = new System.Drawing.Size(189, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Название манги";
+            this.label1.Text = "Название манги или ссылка на неё";
             // 
             // label2
             // 
@@ -147,16 +147,16 @@
             this.deletePic.Text = "Удалить изображения\r\n(создастся pdf файл)";
             this.deletePic.UseVisualStyleBackColor = true;
             // 
-            // downloadAll
+            // DownloadAll
             // 
-            this.downloadAll.AutoSize = true;
-            this.downloadAll.Location = new System.Drawing.Point(15, 240);
-            this.downloadAll.Name = "downloadAll";
-            this.downloadAll.Size = new System.Drawing.Size(123, 17);
-            this.downloadAll.TabIndex = 13;
-            this.downloadAll.Text = "Скачать всю мангу";
-            this.downloadAll.UseVisualStyleBackColor = true;
-            this.downloadAll.CheckedChanged += new System.EventHandler(this.DownloadAll_CheckedChanged);
+            this.DownloadAll.AutoSize = true;
+            this.DownloadAll.Location = new System.Drawing.Point(15, 240);
+            this.DownloadAll.Name = "DownloadAll";
+            this.DownloadAll.Size = new System.Drawing.Size(123, 17);
+            this.DownloadAll.TabIndex = 13;
+            this.DownloadAll.Text = "Скачать всю мангу";
+            this.DownloadAll.UseVisualStyleBackColor = true;
+            this.DownloadAll.CheckedChanged += new System.EventHandler(this.DownloadAll_CheckedChanged);
             // 
             // rmRadio
             // 
@@ -188,7 +188,7 @@
             this.ClientSize = new System.Drawing.Size(215, 296);
             this.Controls.Add(this.mmRadio);
             this.Controls.Add(this.rmRadio);
-            this.Controls.Add(this.downloadAll);
+            this.Controls.Add(this.DownloadAll);
             this.Controls.Add(this.deletePic);
             this.Controls.Add(this.createPdf);
             this.Controls.Add(this.label3);
@@ -199,8 +199,11 @@
             this.Controls.Add(this.numTom);
             this.Controls.Add(this.nameManga);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "DManga";
+            this.ShowIcon = false;
+            this.Text = "DownloadManga";
             ((System.ComponentModel.ISupportInitialize)(this.numTom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChapter)).EndInit();
             this.ResumeLayout(false);
@@ -218,7 +221,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox createPdf;
         private System.Windows.Forms.CheckBox deletePic;
-        private System.Windows.Forms.CheckBox downloadAll;
+        private System.Windows.Forms.CheckBox DownloadAll;
         private System.Windows.Forms.RadioButton rmRadio;
         private System.Windows.Forms.RadioButton mmRadio;
     }
