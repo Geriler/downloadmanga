@@ -40,8 +40,8 @@ namespace Readmanga
                     }
                     using (WebClient client = new WebClient())
                     {
-                        client.DownloadFile(new Uri(str), $"{path}\\{i}.jpg");
-                        images[j] = $"{path}\\{i}.jpg";
+                        client.DownloadFile(new Uri(str), $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg");
+                        images[j] = $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg";
                         j++;
                     }
                     if (i > (arg2.Length - 8))
