@@ -1,6 +1,5 @@
 ﻿using AngleSharp.Parser.Html;
 using System;
-using System.Windows.Forms;
 
 namespace Readmanga.Core
 {
@@ -34,13 +33,6 @@ namespace Readmanga.Core
                 loader = new HtmlLoader(value);
             }
         }
-        public bool IsActive
-        {
-            get
-            {
-                return isActive;
-            }
-        }
         #endregion
         public event Action<object, T, int, int> OnNewData;
         public event Action<object> OnCompleted;
@@ -56,10 +48,6 @@ namespace Readmanga.Core
         {
             isActive = true;
             Worker();
-        }
-        public void Abort()
-        {
-            isActive = false;
         }
         private async void Worker()
         {

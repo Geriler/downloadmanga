@@ -64,6 +64,7 @@ namespace Readmanga
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    break;
                 }
             }
         }
