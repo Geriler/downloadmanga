@@ -82,6 +82,7 @@ namespace Readmanga
             createPdf.Enabled = true;
             deletePic.Enabled = true;
             DownloadAll.Enabled = true;
+            newMethodDownload.Enabled = true;
             nameManga.Enabled = true;
             numChapterFirst.Enabled = true;
             numChapterLast.Enabled = true;
@@ -96,6 +97,7 @@ namespace Readmanga
             createPdf.Enabled = false;
             deletePic.Enabled = false;
             DownloadAll.Enabled = false;
+            newMethodDownload.Enabled = false;
             numChapterFirst.Enabled = false;
             numChapterLast.Enabled = false;
             numTom.Enabled = false;

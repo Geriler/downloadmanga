@@ -196,7 +196,7 @@
             // newMethodDownload
             // 
             this.newMethodDownload.AutoSize = true;
-            this.newMethodDownload.Location = new System.Drawing.Point(12, 263);
+            this.newMethodDownload.Location = new System.Drawing.Point(15, 263);
             this.newMethodDownload.Name = "newMethodDownload";
             this.newMethodDownload.Size = new System.Drawing.Size(176, 30);
             this.newMethodDownload.TabIndex = 17;
