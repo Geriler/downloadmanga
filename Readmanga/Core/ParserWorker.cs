@@ -115,7 +115,6 @@ namespace Readmanga.Core
                     var result = parser.Parse(document);
                     if (result != null)
                     {
-                        isNewData = true;
                         OnNewData.Invoke(this, result, i, parserSettings.NumTom);
                     }
                 }
