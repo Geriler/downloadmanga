@@ -7,6 +7,7 @@
         string Prefix { get; set; }
         string NameManga { get; set; }
         int NumTom { get; set; }
-        int NumChapter { get; set; }
+        int NumChapterLast { get; set; }
+        int NumChapterFirst { get; set; }
     }
 }

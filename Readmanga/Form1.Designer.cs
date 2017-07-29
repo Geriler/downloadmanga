@@ -30,7 +30,7 @@
         {
             this.nameManga = new System.Windows.Forms.TextBox();
             this.numTom = new System.Windows.Forms.NumericUpDown();
-            this.numChapter = new System.Windows.Forms.NumericUpDown();
+            this.numChapterLast = new System.Windows.Forms.NumericUpDown();
             this.Start = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,8 +40,11 @@
             this.DownloadAll = new System.Windows.Forms.CheckBox();
             this.rmRadio = new System.Windows.Forms.RadioButton();
             this.mmRadio = new System.Windows.Forms.RadioButton();
+            this.numChapterFirst = new System.Windows.Forms.NumericUpDown();
+            this.newMethodDownload = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numTom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numChapter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChapterLast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChapterFirst)).BeginInit();
             this.SuspendLayout();
             // 
             // nameManga
@@ -59,11 +62,6 @@
             0,
             0,
             0});
-            this.numTom.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numTom.Name = "numTom";
             this.numTom.Size = new System.Drawing.Size(188, 20);
             this.numTom.TabIndex = 2;
@@ -73,26 +71,27 @@
             0,
             0});
             // 
-            // numChapter
+            // numChapterLast
             // 
-            this.numChapter.Location = new System.Drawing.Point(15, 140);
-            this.numChapter.Maximum = new decimal(new int[] {
+            this.numChapterLast.Location = new System.Drawing.Point(113, 140);
+            this.numChapterLast.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-            this.numChapter.Name = "numChapter";
-            this.numChapter.Size = new System.Drawing.Size(188, 20);
-            this.numChapter.TabIndex = 3;
-            this.numChapter.Value = new decimal(new int[] {
+            this.numChapterLast.Name = "numChapterLast";
+            this.numChapterLast.Size = new System.Drawing.Size(90, 20);
+            this.numChapterLast.TabIndex = 3;
+            this.numChapterLast.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.numChapterLast.ValueChanged += new System.EventHandler(this.NumChapterLast_ValueChanged);
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(15, 263);
+            this.Start.Location = new System.Drawing.Point(15, 299);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(188, 23);
             this.Start.TabIndex = 6;
@@ -123,9 +122,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 111);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(168, 26);
+            this.label3.Size = new System.Drawing.Size(141, 26);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Номер главы (до этого номера \r\nскачаются все главы в томе)";
+            this.label3.Text = "С какой и до какой главы \r\nскачивать мангу";
             // 
             // createPdf
             // 
@@ -181,11 +180,37 @@
             this.mmRadio.Text = "Mintmanga";
             this.mmRadio.UseVisualStyleBackColor = true;
             // 
+            // numChapterFirst
+            // 
+            this.numChapterFirst.Location = new System.Drawing.Point(15, 140);
+            this.numChapterFirst.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numChapterFirst.Name = "numChapterFirst";
+            this.numChapterFirst.Size = new System.Drawing.Size(90, 20);
+            this.numChapterFirst.TabIndex = 16;
+            this.numChapterFirst.ValueChanged += new System.EventHandler(this.NumChapterFirst_ValueChanged);
+            // 
+            // newMethodDownload
+            // 
+            this.newMethodDownload.AutoSize = true;
+            this.newMethodDownload.Location = new System.Drawing.Point(12, 263);
+            this.newMethodDownload.Name = "newMethodDownload";
+            this.newMethodDownload.Size = new System.Drawing.Size(176, 30);
+            this.newMethodDownload.TabIndex = 17;
+            this.newMethodDownload.Text = "Изменить метод скачивания \r\n(не будет создан pdf)";
+            this.newMethodDownload.UseVisualStyleBackColor = true;
+            this.newMethodDownload.CheckedChanged += new System.EventHandler(this.NewMethodDownload_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(215, 296);
+            this.ClientSize = new System.Drawing.Size(215, 335);
+            this.Controls.Add(this.newMethodDownload);
+            this.Controls.Add(this.numChapterFirst);
             this.Controls.Add(this.mmRadio);
             this.Controls.Add(this.rmRadio);
             this.Controls.Add(this.DownloadAll);
@@ -195,7 +220,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Start);
-            this.Controls.Add(this.numChapter);
+            this.Controls.Add(this.numChapterLast);
             this.Controls.Add(this.numTom);
             this.Controls.Add(this.nameManga);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -205,7 +230,8 @@
             this.ShowIcon = false;
             this.Text = "DownloadManga";
             ((System.ComponentModel.ISupportInitialize)(this.numTom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numChapter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChapterLast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChapterFirst)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,7 +240,7 @@
         #endregion
         private System.Windows.Forms.TextBox nameManga;
         private System.Windows.Forms.NumericUpDown numTom;
-        private System.Windows.Forms.NumericUpDown numChapter;
+        private System.Windows.Forms.NumericUpDown numChapterLast;
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -224,6 +250,8 @@
         private System.Windows.Forms.CheckBox DownloadAll;
         private System.Windows.Forms.RadioButton rmRadio;
         private System.Windows.Forms.RadioButton mmRadio;
+        private System.Windows.Forms.NumericUpDown numChapterFirst;
+        private System.Windows.Forms.CheckBox newMethodDownload;
     }
 }
 

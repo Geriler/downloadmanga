@@ -52,12 +52,11 @@ namespace Readmanga.Core
         private async void Worker()
         {
             bool isNewData = false, checkNextChapter = false;
-            int num_chapter = 0, num_tom = 1;
             if (parserSettings.DowloadAll)
             {
-                for (int j = num_tom; j <= parserSettings.NumTom; j++)
+                for (int j = parserSettings.NumTom; j <= parserSettings.NumTom; j++)
                 {
-                    for (int i = num_chapter; i <= parserSettings.NumChapter; i++)
+                    for (int i = parserSettings.NumChapterFirst; i <= parserSettings.NumChapterFirst; i++)
                     {
                         if (!isActive)
                         {
@@ -77,22 +76,24 @@ namespace Readmanga.Core
                             }
                             isNewData = true;
                             OnNewData.Invoke(this, result, i, j);
-                            num_tom = j;
-                            num_chapter = i;
-                            parserSettings.NumChapter++;
+                            parserSettings.NumChapterFirst++;
                         }
                         else
                         {
                             isNewData = false;
+                            if (parserSettings.NumTom == 0)
+                            {
+                                parserSettings.NumTom++;
+                            }
                             if (checkNextChapter)
                             {
-                                parserSettings.NumChapter--;
+                                parserSettings.NumChapterFirst--;
                                 break;
                             }
                             else
                             {
                                 checkNextChapter = true;
-                                parserSettings.NumChapter++;
+                                parserSettings.NumChapterFirst++;
                             }
                         }
                     }
@@ -101,7 +102,7 @@ namespace Readmanga.Core
             }
             else
             {
-                for (int i = 0; i <= parserSettings.NumChapter; i++)
+                for (int i = parserSettings.NumChapterFirst; i <= parserSettings.NumChapterLast; i++)
                 {
                     if (!isActive)
                     {

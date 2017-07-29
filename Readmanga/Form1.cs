@@ -40,18 +40,26 @@ namespace Readmanga
                     }
                     using (WebClient client = new WebClient())
                     {
-                        client.DownloadFile(new Uri(str), $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg");
-                        images[j] = $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg";
-                        j++;
+                        if (newMethodDownload.Checked)
+                        {
+                            client.DownloadFileAsync(new Uri(str), $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg");
+                            j++;
+                        }
+                        else
+                        {
+                            client.DownloadFile(new Uri(str), $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg");
+                            images[j] = $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg";
+                            j++;
+                        }
                     }
                     if (i > (arg2.Length - 8))
                     {
-                        if (deletePic.Checked == true)
+                        if (deletePic.Checked)
                         {
                             ImgToPdf($"{path_file}\\Manga\\{nameManga.Text}\\{nameManga.Text}_{num_tom}_{num_chapter}.pdf", images);
                             Directory.Delete($"{path_file}\\Manga\\{nameManga.Text}\\{num_tom}", true);
                         }
-                        else if (createPdf.Checked == true)
+                        else if (createPdf.Checked)
                         {
                             ImgToPdf($"{path_file}\\Manga\\{nameManga.Text}\\{nameManga.Text}_{num_tom}_{num_chapter}.pdf", images);
                         }
@@ -75,7 +83,8 @@ namespace Readmanga
             deletePic.Enabled = true;
             DownloadAll.Enabled = true;
             nameManga.Enabled = true;
-            numChapter.Enabled = true;
+            numChapterFirst.Enabled = true;
+            numChapterLast.Enabled = true;
             numTom.Enabled = true;
             Start.Enabled = true;
             rmRadio.Visible = true;
@@ -87,7 +96,8 @@ namespace Readmanga
             createPdf.Enabled = false;
             deletePic.Enabled = false;
             DownloadAll.Enabled = false;
-            numChapter.Enabled = false;
+            numChapterFirst.Enabled = false;
+            numChapterLast.Enabled = false;
             numTom.Enabled = false;
             Start.Enabled = false;
             if (rgx.IsMatch(nameManga.Text))
@@ -97,14 +107,44 @@ namespace Readmanga
             if (rmRadio.Checked)
             {
                 mmRadio.Visible = false;
-                parser.Settings = new RmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, DownloadAll.Checked);
+                parser.Settings = new RmSettings(nameManga.Text, (int)numTom.Value, (int)numChapterLast.Value, (int)numChapterFirst.Value, DownloadAll.Checked);
             }
             else
             {
                 rmRadio.Visible = false;
-                parser.Settings = new MmSettings(nameManga.Text, (int)numTom.Value, (int)numChapter.Value, DownloadAll.Checked);
+                parser.Settings = new MmSettings(nameManga.Text, (int)numTom.Value, (int)numChapterLast.Value, (int)numChapterFirst.Value, DownloadAll.Checked);
             }
             parser.Start();
+        }
+        private void NumChapterFirst_ValueChanged(object sender, EventArgs e)
+        {
+            if (numChapterFirst.Value > numChapterLast.Value)
+            {
+                numChapterLast.Value = numChapterFirst.Value;
+            }
+        }
+        private void NumChapterLast_ValueChanged(object sender, EventArgs e)
+        {
+            if (numChapterFirst.Value > numChapterLast.Value)
+            {
+                numChapterFirst.Value = numChapterLast.Value;
+            }
+        }
+        private void NewMethodDownload_CheckedChanged(object sender, EventArgs e)
+        {
+            if (newMethodDownload.Checked)
+            {
+                createPdf.Enabled = false;
+                deletePic.Enabled = false;
+                createPdf.Checked = false;
+                deletePic.Checked = false;
+            }
+            else
+            {
+                createPdf.Enabled = true;
+                deletePic.Enabled = true;
+            }
+            
         }
         private void ImgToPdf(string folder, string[] images)
         {
@@ -166,9 +206,11 @@ namespace Readmanga
                 label2.Visible = false;
                 label3.Visible = false;
                 numTom.Visible = false;
-                numTom.Value = 1;
-                numChapter.Visible = false;
-                numChapter.Value = 0;
+                numTom.Value = 0;
+                numChapterFirst.Visible = false;
+                numChapterFirst.Value = 0;
+                numChapterLast.Visible = false;
+                numChapterLast.Value = 0;
 
             }
             else
@@ -177,8 +219,10 @@ namespace Readmanga
                 label3.Visible = true;
                 numTom.Visible = true;
                 numTom.Value = 1;
-                numChapter.Visible = true;
-                numChapter.Value = 1;
+                numChapterFirst.Visible = true;
+                numChapterFirst.Value = 0;
+                numChapterLast.Visible = true;
+                numChapterLast.Value = 1;
             }
         }
     }
