@@ -118,13 +118,6 @@ namespace Readmanga.Core
                         isNewData = true;
                         OnNewData.Invoke(this, result, i, parserSettings.NumTom);
                     }
-                    else
-                    {
-                        if (isNewData)
-                        {
-                            break;
-                        }
-                    }
                 }
             }
             OnCompleted?.Invoke(this);
