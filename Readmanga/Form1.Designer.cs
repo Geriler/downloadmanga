@@ -42,6 +42,8 @@
             this.mmRadio = new System.Windows.Forms.RadioButton();
             this.numChapterFirst = new System.Windows.Forms.NumericUpDown();
             this.newMethodDownload = new System.Windows.Forms.CheckBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.labDownload = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numTom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChapterLast)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChapterFirst)).BeginInit();
@@ -135,6 +137,7 @@
             this.createPdf.TabIndex = 11;
             this.createPdf.Text = "Создать pdf после скачивания\r\n(изображения НЕ удалятся)";
             this.createPdf.UseVisualStyleBackColor = true;
+            this.createPdf.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // deletePic
             // 
@@ -145,6 +148,7 @@
             this.deletePic.TabIndex = 12;
             this.deletePic.Text = "Удалить изображения\r\n(создастся pdf файл)";
             this.deletePic.UseVisualStyleBackColor = true;
+            this.deletePic.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // DownloadAll
             // 
@@ -204,11 +208,29 @@
             this.newMethodDownload.UseVisualStyleBackColor = true;
             this.newMethodDownload.CheckedChanged += new System.EventHandler(this.NewMethodDownload_CheckedChanged);
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(15, 341);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(186, 23);
+            this.progressBar.Step = 1;
+            this.progressBar.TabIndex = 18;
+            // 
+            // labDownload
+            // 
+            this.labDownload.AutoSize = true;
+            this.labDownload.Location = new System.Drawing.Point(12, 325);
+            this.labDownload.Name = "labDownload";
+            this.labDownload.Size = new System.Drawing.Size(0, 13);
+            this.labDownload.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(215, 335);
+            this.ClientSize = new System.Drawing.Size(215, 375);
+            this.Controls.Add(this.labDownload);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.newMethodDownload);
             this.Controls.Add(this.numChapterFirst);
             this.Controls.Add(this.mmRadio);
@@ -252,6 +274,8 @@
         private System.Windows.Forms.RadioButton mmRadio;
         private System.Windows.Forms.NumericUpDown numChapterFirst;
         private System.Windows.Forms.CheckBox newMethodDownload;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label labDownload;
     }
 }
 

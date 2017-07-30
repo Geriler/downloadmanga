@@ -27,13 +27,18 @@ namespace Readmanga
         private void Parser_OnNewData(object arg1, string[] arg2, int num_chapter, int num_tom)
         {
             int j = 0;
+            labDownload.Text = "Скачивание началось";
             images = new String[arg2.Length / 6];
+            progressBar.Maximum = arg2.Length / 6;
             for (int i = 0; i < arg2.Length; i += 6)
             {
                 try
                 {
                     string str = arg2[i + 1] + arg2[i] + arg2[i + 2];
                     path = $"{path_file}\\Manga\\{nameManga.Text}\\{num_tom}\\{num_chapter}";
+                    labDownload.Enabled = false;
+                    labDownload.Text = $"Том: {num_tom}, глава: {num_chapter}, страница: {j}";
+                    labDownload.Enabled = true;
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
@@ -51,6 +56,7 @@ namespace Readmanga
                             images[j] = $"{path}\\{nameManga.Text}_{num_tom}_{num_chapter}_{j}.jpg";
                             j++;
                         }
+                        progressBar.Value = j;
                     }
                     if (i > (arg2.Length - 8))
                     {
@@ -90,6 +96,7 @@ namespace Readmanga
             Start.Enabled = true;
             rmRadio.Visible = true;
             mmRadio.Visible = true;
+            labDownload.Text = "Скачивание завершено";
         }
         private void Start_Click(object sender, EventArgs e)
         {
@@ -147,6 +154,18 @@ namespace Readmanga
                 deletePic.Enabled = true;
             }
             
+        }
+        private void CheckedChanged(object sender, EventArgs e)
+        {
+            if (deletePic.Checked || createPdf.Checked)
+            {
+                newMethodDownload.Checked = false;
+                newMethodDownload.Enabled = false;
+            }
+            else
+            {
+                newMethodDownload.Enabled = true;
+            }
         }
         private void ImgToPdf(string folder, string[] images)
         {
