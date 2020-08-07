@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.app {
+    width: calc(100vw - 60px);
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.form-group, label {
+    margin-bottom: 0;
+}
+
+input, select {
+    margin-bottom: 10px;
+}

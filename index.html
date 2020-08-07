@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DownloadManga</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="app">
+        <form action="" method="post" class="d-flex flex-column align-items-stretch justify-content-around h-100">
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <select class="custom-select" name="site">
+                        <option value="readmanga">Readmanga</option>
+                        <option value="mintmanga">Mintmanga</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="name-manga" class="col-form-label">Название манги</label>
+                    <input type="text" id="name-manga" class="form-control" name="name-manga">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="num-volume" class="col-form-label">Номер тома</label>
+                    <input type="number" min="1" id="num-volume" class="form-control" name="num-volume" value="1">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="num-chapter" class="col-form-label">Номер главы (до этого номера скачаются все главы в томе)</label>
+                    <input type="number" min="0" id="num-chapter" class="form-control" name="num-chapter" value="1">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label><input type="checkbox" class="custom-checkbox" name="create-pdf"> Создать pdf после скачивания</label>
+                </div>
+                <div class="form-group col-12">
+                    <label><input type="checkbox" class="custom-checkbox" name="remove-images"> Удалить изображения</label>
+                </div>
+                <div class="form-group col-12">
+                    <label><input type="checkbox" class="custom-checkbox" name="download-all"> Скачать всю мангу</label>
+                </div>
+            </div>
+            <button class="btn btn-primary w-100 mt-3" type="submit">Download</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

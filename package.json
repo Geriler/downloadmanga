@@ -1,0 +1,32 @@
+{
+  "name": "downloadmanga",
+  "productName": "DownloadManga",
+  "description": "DownloadManga is used to download manga from readmanga and mintmanga",
+  "version": "2.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --linux AppImage snap deb rpm pacman tar.gz --win portable:x64",
+    "build-mac": "electron-builder --mac zip --x64",
+    "build-win32": "electron-builder --win portable:ia32"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Geriler",
+    "email": "alexanderkoltygin@gmail.com",
+    "url": "https://github.com/Geriler"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Geriler/downloadmanga.git"
+  },
+  "keywords": [
+    "readmanga",
+    "mintmanga",
+    "downloadmanga"
+  ],
+  "devDependencies": {
+    "electron": "^9.1.1",
+    "electron-builder": "^22.7.0"
+  }
+}
